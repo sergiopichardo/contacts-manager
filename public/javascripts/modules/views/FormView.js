@@ -28,7 +28,7 @@ class FormView extends BaseView {
 
     elements.forEach((element, index) => {
       element.addEventListener('input', (event) => {
-        this._bindInputChanged(event, inputValidators[index])
+        this._bindInputChanged(event, inputValidators[index]);
         
         const updatedElements = [...this._getAllElements(selector)];
         const isEverythingValid = updatedElements.every(element => {
@@ -51,14 +51,11 @@ class FormView extends BaseView {
       if (event.key === 'Enter') {
         event.preventDefault();
       }
-    })
+    });
 
     form.addEventListener('submit', event => {
       event.preventDefault();
-      // this._bindCheckboxChanged(); 
       const data = this._getFormData(form);
-
-      // console.log('Form data:', new FormData(form));
       handler(data)
     });
   }
@@ -67,8 +64,31 @@ class FormView extends BaseView {
   // I binded it in the `handleAddContact` method in the controller
   bindCheckboxChanged = () => {
     const form = this._getElement('#contact-form');
-    form.addEventListener('change', (event) => {}); 
+    form.addEventListener('click', (event) => {
+      if (event.target.getAttribute('type') === 'checkbox') {
+        const checkbox = event.target; 
+        const span = checkbox.parentElement;
+
+        // create new checkbox 
+        const newCheckbox = this._createElement('input');
+        newCheckbox.type = 'checkbox'; 
+        newCheckbox.value = checkbox.value; 
+        newCheckbox.name = checkbox.name;
+        
+        // if the checkbox is checked change the 
+        if (!checkbox.hasAttribute('checked')) {
+          newCheckbox.setAttribute('checked', "");
+        } else {
+          newCheckbox.removeAttribute('checked');
+        }
+
+        // insert new checkbox
+        span.removeChild(checkbox);
+        span.insertAdjacentElement("afterbegin", newCheckbox);
+      }
+    }); 
   }
+
 
   _getFormData = (form) => { 
     const elements = [...form.elements];

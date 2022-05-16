@@ -385,19 +385,21 @@
 
 
             <!-- Tags Checkboxes -->
-            <div class="field checkboxes">
-              <label class="label">Tags</label>
+            <div id="checkboxes" class="field">
+              <label class="label">Available Tags</label>
               <div class="control is-flex is-flex-direction-column">
                 {{#if tags}}
                   {{#each tags}}
                     <label class="mb-2">
                       <input 
-                        class="checkbox"
                         type="checkbox" 
                         value="{{this}}"
                         name="tag{{@index}}"
+                        class="checkbox"
                       >
-                      {{this}}
+                      <span class="checkbox-text">
+                        {{this}}
+                      </span>
                     </label>
                   {{/each}}
                 {{else}}

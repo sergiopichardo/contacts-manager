@@ -42,7 +42,7 @@ class ModalView extends BaseView {
   load(templateName, context) {
     let selector = null; 
 
-    console.log('context', context)
+    // console.log('context', context)
 
     switch(templateName) {
       case CONFIRM_DELETE: 
