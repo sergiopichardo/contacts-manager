@@ -211,14 +211,6 @@ export default class Controller {
     } catch (err) {
       console.error(err)
     }
-    // dispatch custom input event 
-    // await this.handleQuerySearch(null); 
-
-    // TODO: Don't forget to load all contacts from the beginning
-    // add button in navigation page to load all contacts in 
-    // alphabetic order. 
-    // use `loadInitialData` method for that 
-    // put event listener in `View` class 
   }
 
 
