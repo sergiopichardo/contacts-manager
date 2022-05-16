@@ -21,6 +21,12 @@ export default class BaseView {
     }
   }
 
+  _createElement(tag) {
+    if (tag) {
+      return document.createElement(tag);
+    }
+  }
+
   _getHTML(selector) {
     return this._getElement(selector).innerHTML; 
   }
