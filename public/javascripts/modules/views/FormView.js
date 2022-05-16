@@ -7,12 +7,12 @@ class FormView extends BaseView {
     super(); 
   }
 
-  _bindInputChanged(e, validation) {
+  _bindInputChanged(e, isInvalid) {
     const inputElement = e.target; 
     const parent = inputElement.closest('.field');
     const errorElement = parent.querySelector('p.error');
 
-    if (validation(inputElement)) {
+    if (isInvalid(inputElement)) {
       inputElement.classList.remove('is-primary'); 
       errorElement.classList.remove('is-hidden');
       inputElement.classList.add('is-danger'); 
@@ -25,20 +25,25 @@ class FormView extends BaseView {
 
   bindErrors() {
     const selector = 'input.contact-info'; 
-    let elements = [...this._getAllElements(selector)]; 
     const submitButton = this._getElement('.submit-button'); 
-
+    
+    let elements = [...this._getAllElements(selector)];
+    let customTag = this._getElement('.custom-tag');
+    
+    if (!customTag.value) {
+      customTag.classList.add('is-primary'); 
+    }
 
     elements.forEach((element, index) => {
       element.addEventListener('input', (event) => {
         this._bindInputChanged(event, inputValidators[index]);
         
-        const updatedElements = [...this._getAllElements(selector)];
-        const isEverythingValid = updatedElements.every(element => {
+        elements = [...this._getAllElements(selector)]
+        const allIsValid = elements.every(element => {
           return element.classList.contains('is-primary'); 
         });
     
-        if (isEverythingValid) {
+        if (allIsValid) {
           submitButton.removeAttribute('disabled'); 
         } else {
           submitButton.setAttribute('disabled', ""); 
@@ -109,7 +114,6 @@ class FormView extends BaseView {
           data.tags.push(element.value); 
       }
 
-      console.log(data); 
       return data; 
     }, dataStructure);
   }
