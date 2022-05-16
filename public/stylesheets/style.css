@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+
+body {
+  min-height: 100vh;
+}
+
+.logo {
+  font-family: 'Roboto Slab', serif;
+  font-weight: bold;
+}
+
+.dropdown-item {
+  width: 250px; 
+}
+
+.dropdown-item:hover {
+  cursor: pointer !important;
+  background-color: #efefef !important; 
+}
+
+.favorite {
+  display: flex; 
+  /* justify-content: center;  */
+  align-items: center; 
+}
+
+.favorite__name {
+  flex-grow: 2; 
+  padding-left: 5px; 
+}
+
+.favorite__icon {
+  flex-grow: 1;
+}
+
+.error-icon {
+  font-size: 20px; 
+}
+
+.page-tags {
+  padding: 10px; 
+  /* border: 1px solid lightgray;  */
+}
+
+#no-contacts {
+  /* border: 1px solid lightgray;  */
+}
+
+.contact {
+  width: 300px; 
+}
+
+.tag:hover {
+  cursor: pointer; 
+  color: black; 
+}

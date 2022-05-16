@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "full_name": "Naveed Fida",
+    "email": "nf@example.com",
+    "phone_number": "12345678901",
+    "tags": "work,friend,entrepreneur"
+  },
+  {
+    "id": 3,
+    "full_name": "Pete Hanson",
+    "email": "ph@example.com",
+    "phone_number": "54321098761",
+    "tags": "friend,entrepreneur,Software,Entrepreneur,Product Owner,Launch School Teacher"
+  },
+  {
+    "full_name": "Vic Victorious",
+    "phone_number": "12345678901",
+    "email": "vic@victorious.com",
+    "tags": "work,friend,entrepreneur,software engineer",
+    "id": 4
+  },
+  {
+    "full_name": "Sergio Pichardo",
+    "phone_number": "1231231234",
+    "email": "sergio@pichardo.com",
+    "tags": "Software,Hardware,Sales,Entrepreneur,Project Manager,Product Owner,Security Engineer",
+    "id": 7
+  },
+  {
+    "full_name": "Alvaro Musk",
+    "phone_number": "1231231234",
+    "email": "elonmusk@email.com",
+    "tags": "Software,Hardware,Sales,Entrepreneur,Project Manager,Product Owner,Security Application Engineer",
+    "id": 9
+  },
+  {
+    "full_name": "Allan Musk",
+    "phone_number": "1231231234",
+    "email": "elonmusk@email.com",
+    "tags": "Software,Hardware,Sales,Entrepreneur,Project Manager,Product Owner,Security Application Engineer",
+    "id": 10
+  },
+  {
+    "full_name": "Albert Musk",
+    "phone_number": "1231231234",
+    "email": "elonmusk@email.com",
+    "tags": "Software,Hardware,Sales,Entrepreneur,Project Manager,Product Owner,Security Application Engineer",
+    "id": 11
+  },
+  {
+    "full_name": "Andre Pichardo",
+    "phone_number": "1234567890",
+    "email": "andre@pichardo.com",
+    "tags": "software engineer,Entrepreneur,Security Engineer,Security Application Engineer,Consultant",
+    "id": 13
+  }
+]

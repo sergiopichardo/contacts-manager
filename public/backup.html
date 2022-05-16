@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  <!-- Vendors -->
+  <script src="/javascripts/vendors/jquery.js"></script>
+  <script src="/javascripts/vendors/handlebars-v4.7.7.js"></script>
+
+  <!-- Main Script -->
+  <script src="/javascripts/main.js" type="module"></script>
+
+
+  <!-- Styles -->
+  <!-- Font Awesome -->
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css" integrity="sha512-gMjQeDaELJ0ryCI+FtItusU9MkAifCZcGq789FrzkiM49D8lbDhoaUaIX4ASU187wofMNlgBJ4ckbrXM9sE6Pg==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css">
+  
+  <!-- Bulma CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="/stylesheets/style.css">
+
+</head>
+<body class="has-background-white-ter">
+  <div id="app">
+    
+    <!-- Initial Components in Page -->
+    <!-- 
+      > Navigation View 
+        - Logo
+        - Search Input 
+        - Add Contact Button 
+        - Favorites Button 
+          - Dropdown View 
+      -->
+      <nav class="navbar">
+        <div class="container">
+          <div class="navbar-brand">
+            <a href="/" class="navbar-item logo is-size-6">
+              <span class="icon-text">
+                <span class="icon">
+                  <!-- <i class="fas fa-id-card"></i> -->
+                  <i class="fas fa-comment-alt"></i>
+                </span>
+                <span>Contacts Manager</span>
+              </span>
+            </a>
+          </div>
+          <div class="navbar-start">
+            <div class="navbar-item">
+              <input class="input is-normal" type="text" placeholder="Search Contacts">
+            </div>
+          </div>
+  
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="buttons">
+                <a href="/api/contacts" class="button is-primary">
+                  <span class="icon-text">
+                    <span class="icon">
+                      <i class="fas fa-user-plus"></i>
+                    </span>
+                    <span>Add Contact</span>
+                  </span>
+                </a>
+              </div>
+            </div>
+
+            <!-- <div class="navbar-item dropdown is-hoverable is-right">
+              <div class="dropdown-trigger">
+                <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                  <span class="icon-text">
+                    <span class="icon">
+                      <i class="fas fa-heart"></i>
+                    </span>
+                    <span>Favorites</span>
+                  </span>
+
+                  <span class="icon is-small">
+                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                  </span>
+                </button>
+              </div>
+
+              <div class="dropdown-menu is-active" id="dropdown-menu4" role="menu">
+                <div class="dropdown-content">
+                  <div class="dropdown-item">
+                    <div class="favorite">
+                      <span class="favorite__name is-size-5">
+                        Sergio Pichardo
+                      </span>
+                      <span class="favorite__icon">
+                        <span class="icon-text">
+                          <span class="icon has-text-danger">
+                            <i class="fas fa-heart"></i>
+                          </span>
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <div class="dropdown-divider"></div>
+                  
+                  <div class="dropdown-item">
+                    <div class="favorite">
+                      <span class="favorite__name is-size-5">
+                        Andrea Pichardo
+                      </span>
+                      <span class="favorite__icon">
+                        <span class="icon-text">
+                          <span class="icon has-text-danger">
+                            <i class="fas fa-heart"></i>
+                          </span>
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <div class="dropdown-divider"></div>
+                  
+                  <div class="dropdown-item">
+                    <div class="favorite">
+                      <span class="favorite__name is-size-5">
+                        Andrea Pichardo
+                      </span>
+                      <span class="favorite__icon">
+                        <span class="icon-text">
+                          <span class="icon has-text-danger">
+                            <i class="fas fa-heart"></i>
+                          </span>
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+          </div>
+        </div>
+        
+      </nav>
+      
+
+      <!-- 
+        > Page Tags View 
+      -->
+      <section class="page-tags mt-5">
+        <div class="container">
+          <!-- Success View -->
+          <div class="page-tags__success">
+            <div class="tags are-small is-flex is-flex-wrap-wrap">
+              <span class="tag is-primary is-light">
+                <a href="">Senior</a>
+              </span>
+              <span class="tag is-primary is-light">
+                <a href="">Sales</a>
+              </span>
+              <span class="tag is-primary is-light">
+                <a href="">Software</a>
+              </span>
+              <span class="tag is-primary is-light">
+                <a href="">Engineering</a>
+              </span>
+              <span class="tag is-primary is-light">
+                <a href="">Development</a>
+              </span>
+              <span class="tag is-primary is-light">
+                <a href="">Full-time</a>
+              </span>
+              <span class="tag is-primary is-light">
+                <a href="">Employee</a>
+              </span>
+            </div>
+          </div>
+
+          </div> 
+          
+          <!-- Error View -->
+          <!-- <div class="has-text-centered page-tags__error">
+            <span class="icon-text">
+              <span class="icon error-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+              </span>
+              <span class="is-size-5">No tags to show</span>
+            </span>
+          </div> -->
+        </div>
+      </section>
+      
+      <!-- 
+        > Main Section (Can render 3 things)
+        1. No Contacts View 
+        2. No Contacts with `query` View 
+        3. Contacts List View
+      -->
+      
+      <main id="main" class="mt-6">
+        <div class="container">
+          <!-- No Contacts View -->
+          <!-- <div id="no-contacts">
+            <div class="has-text-centered page-tags__error">
+              <span class="icon-text is-block p-4 mb-5">
+                <span class="icon error-icon">
+                  <i class="fas fa-exclamation-triangle"></i>
+                </span>
+                <span class="is-size-5">There is no contacts.</span>
+              </span>
+  
+              <a href="/api/contacts" class="button is-primary is-outlined is-inline-block">
+                <span class="icon-text">
+                  <span class="icon">
+                    <i class="fas fa-user-plus"></i>
+                  </span>
+                  <span>Add Contact</span>
+                </span>
+              </a>
+            </div>
+          </div> -->
+
+
+
+          <!-- No Contacts Starting with `query` -->
+          <!-- <div id="no-contacts-starting-with-query">
+            <div class="has-text-centered page-tags__error">
+              <span class="icon-text is-block p-4 mb-5">
+                <span class="icon error-icon">
+                  <i class="fas fa-exclamation-triangle"></i>
+                </span>
+                <p class="is-size-5 is-inline">There is no contacts starting with with <strong>QUERY</strong>.</p>
+              </span>
+            </div>
+          </div> -->
+
+
+
+          <!-- Contacts List View  -->
+          <!-- <div id="contacts-list">
+              <div class="columns is-flex is-flex-wrap-wrap is-justify-content-center">
+
+                <div class="contact" data-id="1">
+                  <div class="contact-column column">
+                    <div class="card">
+                      <div class="card-content">
+                        <div class="media">
+                          <div class="media-content has-text-centered">
+                            <p class="title is-4">John Smith</p>
+                            <p>
+                              <span class="icon-text">
+                                <span class="icon">
+                                  <i class="fas fa-phone"></i>
+                                </span>
+                              </span>
+                              <span class="phone-number">123-789-0230</span>
+                            </p>
+  
+                            <p>
+                              <span class="icon-text">
+                                <span class="icon">
+                                  <i class="fas fa-envelope"></i>
+                                </span>
+                              </span>
+                              <span class="email">john@doe.com</span>
+                            </p>
+                          </div>
+                        </div>
+                        <div class="tags">
+                          <span class="tag is-primary is-light">
+                            <a href="">Senior</a>
+                          </span>
+                          <span class="tag is-primary is-light">
+                            <a href="">Sales</a>
+                          </span>
+                          <span class="tag is-primary is-light">
+                            <a href="">Software</a>
+                          </span>
+                          <span class="tag is-primary is-light">
+                            <a href="">Engineering</a>
+                          </span>
+                          <span class="tag is-primary is-light">
+                            <a href="">Development</a>
+                          </span>
+                          <span class="tag is-primary is-light">
+                            <a href="">Full-time</a>
+                          </span>
+                          <span class="tag is-primary is-light">
+                            <a href="">Employee</a>
+                          </span>
+                        </div>
+                      </div>
+                      <footer class="card-footer">
+                        <a href="#" class="card-footer-item">Edit</a>
+                        <a href="#" class="card-footer-item has-text-danger">Delete</a>
+                      </footer>
+                    </div>
+
+
+                  </div>
+
+                </div>
+                
+              </div>
+          </div> -->
+
+
+        </div>
+      </main>
+
+      <!-- 
+        > Pagination View 
+      -->
+
+      <!-- 
+        > Footer View 
+       -->
+
+  </div>
+
+</body>
+</html>

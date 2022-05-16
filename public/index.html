@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  <!-- Vendors -->
+  <script src="/javascripts/vendors/jquery.js"></script>
+  <script src="/javascripts/vendors/handlebars-v4.7.7.js"></script>
+
+  <!-- <script src="https://unpkg.com/validator@latest/validator.min.js"></script> -->
+
+  <!-- Main Script -->
+  <script src="/javascripts/main.js" type="module"></script>
+
+
+  <!-- Styles -->
+  <!-- Font Awesome -->
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css" integrity="sha512-gMjQeDaELJ0ryCI+FtItusU9MkAifCZcGq789FrzkiM49D8lbDhoaUaIX4ASU187wofMNlgBJ4ckbrXM9sE6Pg==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css">
+  
+  <!-- Bulma CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="/stylesheets/style.css">
+
+</head>
+<body class="has-background-white-ter">
+  <div id="app"></div>
+
+
+
+
+  <!-- 
+    ***************************************************
+    * Handlebars Templates
+    ***************************************************
+   -->
+
+  <!-- page Tags Template -->
+  <script id="page-tags-template" type="text/x-handlebars-template">
+    <section class="page-tags mt-5">
+      <div class="container">
+        {{#if tags}}
+          {{> tagsPartial }}
+        {{else}}
+          <div class="has-text-centered page-tags__error">
+            <span class="icon-text">
+              <span class="icon error-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+              </span>
+              <span class="is-size-5">No tags to show</span>
+            </span>
+          </div> 
+        {{/if}}
+      </div> 
+      </div> <!-- End of container -->
+    </section>
+  </script>
+
+
+  <!-- Tags Partial -->
+  <script id="tags-partial" type="text/x-handlebars-template">
+    <div class="tags are-small is-flex is-flex-wrap-wrap">
+      {{#each tags}}
+        <span class="tag is-primary is-light">
+          <a class="contact-tag">{{this}}</a>
+        </span>
+      {{/each}}
+    </div>
+  </script>
+
+  <!-- Initial Page HTML -->
+  <script id="initial-page" type="text/x-handlebars-template">
+    <!-- Navbar View -->
+    <nav class="navbar" id="contacts-navbar">
+      <div class="container">
+        <div class="navbar-brand">
+          <a href="/" class="navbar-item logo is-size-6">
+            <span class="icon-text">
+              <span class="icon">
+                <i class="fas fa-comment-alt"></i>
+              </span>
+              <span>Contacts Manager</span>
+            </span>
+          </a>
+        </div>
+        <div class="navbar-start">
+          <div class="navbar-item">
+            <input id="search-input" class="input is-normal" type="text" placeholder="Search Contacts">
+          </div>
+        </div>
+
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <button class="button is-primary">
+                <span class="icon-text">
+                  <span class="icon">
+                    <i class="fas fa-user-plus"></i>
+                  </span>
+                  <span class="add-contact">Add Contact</span>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Tags View -->
+    <section id="page-tags" class="page-tags mt-5">
+      <div class="container">
+        <div class="has-text-centered page-tags__error">
+          <span class="icon-text">
+            <span class="icon error-icon">
+              <i class="fas fa-exclamation-triangle"></i>
+            </span>
+            <span class="is-size-5">No tags to show</span>
+          </span>
+        </div> 
+      </div> 
+      </div> 
+    </section>
+
+    <!-- Main View  -->
+    <main id="main" class="mt-6">
+      <div class="container">
+        <div id="no-contacts">
+          <div class="has-text-centered page-tags__error">
+            <span class="icon-text is-block p-4 mb-5">
+              <span class="icon error-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+              </span>
+              <span class="is-size-5">There is no contacts.</span>
+            </span>
+
+            <button class="button is-primary is-outlined is-inline-block">
+              <span class="icon-text">
+                <span class="icon">
+                  <i class="fas fa-user-plus"></i>
+                </span>
+                <span class="add-contact">Add Contact</span>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+
+    <div id="modal-wrapper"></div>
+
+  </script> <!-- End of Initial Page Template -->
+
+
+
+  <!-- Main View -->
+  <script id="main-view" type="text/x-handlebars-template">
+     
+    <main id="main" class="mt-6">
+      <div class="container">
+        <!-- No Contacts View -->
+
+        <!-- No Contacts Starting with `query` -->
+
+        <!-- Contacts List View  -->
+        
+    </main>
+  </script>
+
+  <script id="no-contacts-template" type="text/x-handlebars-template">
+    <div id="no-contacts">
+      <div class="has-text-centered page-tags__error">
+        <span class="icon-text is-block p-4 mb-5">
+          <span class="icon error-icon">
+            <i class="fas fa-exclamation-triangle"></i>
+          </span>
+          <span class="is-size-5">There is no contacts.</span>
+        </span>
+
+        <button class="button is-primary is-outlined is-inline-block">
+          <span class="icon-text">
+            <span class="icon">
+              <i class="fas fa-user-plus"></i>
+            </span>
+            <span class="add-contact">Add Contact</span>
+          </span>
+        </button>
+      </div>
+    </div> 
+  </script>
+
+
+  <script id="no-contacts-with-query-template" type="text/x-handlebars-template">
+    <div id="no-contacts-starting-with-query">
+      <div class="has-text-centered page-tags__error">
+        <span class="icon-text is-block p-4 mb-5">
+          <span class="icon error-icon">
+            <i class="fas fa-exclamation-triangle"></i>
+          </span>
+          <p class="is-size-5 is-inline">There is no contacts starting with with <strong>{{query}}</strong>.</p>
+        </span>
+      </div>
+    </div> 
+  </script>
+
+
+  <script id="contacts-list-template" type="text/x-handlebars-template">
+    <div id="contacts-list">
+      <div class="columns is-flex is-flex-wrap-wrap is-justify-content-center">
+        {{#each contacts}}
+          <div class="contact" data-id="{{id}}">
+            <div class="contact-column column">
+              <div class="card">
+                <div class="card-content">
+                  <div class="media">
+                    <div class="media-content has-text-centered">
+                      <p class="title is-4 contact-name">{{name}}</p>
+                      <p>
+                        <span class="icon-text">
+                          <span class="icon">
+                            <i class="fas fa-phone"></i>
+                          </span>
+                        </span>
+                        <span class="contact-phone">{{phone}}</span>
+                      </p>
+
+                      <p>
+                        <span class="icon-text">
+                          <span class="icon">
+                            <i class="fas fa-envelope"></i>
+                          </span>
+                        </span>
+                        <span class="contact-email">{{email}}</span>
+                      </p>
+                    </div>
+                  </div>
+
+                  {{#if tags}}
+                    {{> tagsPartial}}
+                  {{/if}}
+                    
+                </div>
+                <footer class="card-footer">
+                  <a class="card-footer-item edit-contact">Edit</a>
+                  <a class="card-footer-item has-text-danger delete-contact">Delete</a>
+                </footer>
+              </div>
+            </div>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+  </script>
+
+
+  <!-- Error messsage -->
+  <script id="error-template" type="text/x-handlebars-template">
+    <div class="has-text-centered page-tags__error">
+      <span class="icon-text is-block p-4 mb-5">
+        <span class="icon error-icon">
+          <i class="fas fa-exclamation-triangle"></i>
+        </span>
+        <span class="is-size-5">{{errorMessage}}</span>
+      </span>
+    </div>
+  </script>
+
+
+
+  <!-- 
+    MODALS 
+   -->
+
+
+  <!-- CONFIRM MODAL  -->
+
+  <script id="confirm-modal-template" type="text/x-handlebars-template">
+    <div class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <!-- Templates will go here -->
+        <header class="modal-card-head">
+          <p class="modal-card-title">{{title}}</p>
+          <button class="delete" aria-label="close"></button>
+        </header>
+        
+        <section class="modal-card-body">
+          <p>{{message}}</p>
+        </section>
+    
+        <footer class="modal-card-foot">
+          <button class="button is-info no-button">Cancel</button>
+          <button class="button yes-button">OK</button>
+        </footer>
+      </div>
+      </div>
+    </div>
+  </script>
+
+
+
+  <!-- ADD CONTACT MODAL -->
+  <script id="contact-form-template" type="text/x-handlebars-template">
+    <div class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">{{title}}</p>
+          <button class="delete" aria-label="close"></button>
+        </header>
+        
+        <section class="modal-card-body">
+          <form 
+            id="contact-form" 
+            action="/api/contacts"  
+            method="POST"
+            class="field"
+          >
+            <div class="field">
+              <label class="label">Name</label>
+              <div class="control has-icons-left has-icons-right">
+                <input 
+                  class="input contact-info" 
+                  type="text" 
+                  name="name" 
+                  placeholder="e.g. John Doe" 
+                  value="{{#if name}}{{name}}{{/if}}"
+                >
+                <span class="icon is-small is-left">
+                  <i class="fas fa-user"></i>
+                </span>
+                <span class="icon is-small is-right">
+                  <i class="fas fa-check"></i>
+                </span>
+              </div>
+              <p class="help is-danger is-hidden error">Please enter a valid name.</p>
+            </div>
+            
+            <div class="field">
+              <label class="label">Email</label>
+              <div class="control has-icons-left has-icons-right">
+                <input 
+                  class="input contact-info" 
+                  type="email" 
+                  name="email" 
+                  placeholder="e.g. john@doe.com" 
+                  value="{{#if email}}{{email}}{{/if}}"
+                >
+                <span class="icon is-small is-left">
+                  <i class="fas fa-envelope"></i>
+                </span>
+                <span class="icon is-small is-right">
+                  <i class="fas fa-check"></i>
+                </span>
+              </div>
+
+              <p class="help is-danger is-hidden error">Please enter a valid email.</p>
+            </div>
+    
+            <div class="field">
+              <label class="label">Phone</label>
+              <div class="control has-icons-left has-icons-right">
+                <input 
+                  class="input contact-info" 
+                  type="tel" 
+                  name="phone" 
+                  placeholder="e.g. 123-456-7890" 
+                  value="{{#if phone}}{{phone}}{{/if}}"
+                >
+                <span class="icon is-small is-left">
+                  <i class="fas fa-phone"></i>
+                </span>
+                <span class="icon is-small is-right">
+                  <i class="fas fa-check"></i>
+                </span>
+              </div>
+              
+              <p class="help is-danger is-hidden error">Please enter the name field</p>
+            </div>
+
+
+            <!-- Tags Checkboxes -->
+            <div class="field checkboxes">
+              <label class="label">Tags</label>
+              <div class="control is-flex is-flex-direction-column">
+                {{#if tags}}
+                  {{#each tags}}
+                    <label class="mb-2">
+                      <input 
+                        class="checkbox"
+                        type="checkbox" 
+                        value="{{this}}"
+                        name="tag{{@index}}"
+                      >
+                      {{this}}
+                    </label>
+                  {{/each}}
+                {{else}}
+                  <label class="mb-2">
+                    <input 
+                      class="checkbox"
+                      type="checkbox" 
+                      value="Default"
+                      name="tag0"
+                    >
+                    Default
+                  </label>
+                {{/if}}
+              </div>
+            </div>
+
+    
+            <div class="field">
+              <label class="label">Custom Tag</label>
+              <div class="control has-icons-left has-icons-right">
+                <input 
+                  class="input contact-info" 
+                  type="text" 
+                  placeholder="Text input" 
+                  name="customTag" 
+                >
+                <span class="icon is-small is-left">
+                  <i class="fas fa-tag"></i>
+                </span>
+                <span class="icon is-small is-right">
+                  <i class="fas fa-check"></i>
+                </span>
+              </div>
+              
+              <p class="help is-danger is-hidden error">Please enter a valid custom tag.</p>
+            </div>
+
+            <div class="field">
+              <button class="button is-light no-button">
+                Cancel
+              </button>
+              <button class="button is-primary submit-button" disabled>
+                Submit
+              </button>    
+            </div>
+    
+          </form>
+        </section>
+      </div>
+    </div>
+  </script>
+
+
+
+</body>
+</html>
+
+
