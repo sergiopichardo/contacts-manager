@@ -212,16 +212,7 @@ export default class Controller {
       console.error(err)
     }
   }
-
-
 }
-
-/*
-When you create
-*/
-
-
-
 
 
 
