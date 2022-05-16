@@ -11,7 +11,7 @@ const validateEmail = element => {
 
 const validatePhone = element => {
   let regex = /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/; 
-  return !regex.test(element.value);
+  return !regex.test(element.value) || element.value.length !== 10;
 
 }; 
 
