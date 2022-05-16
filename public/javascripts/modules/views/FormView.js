@@ -3,8 +3,11 @@ import { inputValidators } from '../helpers/validators.js';
 
 
 class FormView extends BaseView {
+  constructor() {
+    super(); 
+  }
 
-  _bindInputChanged = (e, validation) => {
+  _bindInputChanged(e, validation) {
     const inputElement = e.target; 
     const parent = inputElement.closest('.field');
     const errorElement = parent.querySelector('p.error');
@@ -20,7 +23,7 @@ class FormView extends BaseView {
     }
   }
 
-  bindErrors = () => {
+  bindErrors() {
     const selector = 'input.contact-info'; 
     let elements = [...this._getAllElements(selector)]; 
     const submitButton = this._getElement('.submit-button'); 
@@ -45,18 +48,20 @@ class FormView extends BaseView {
   }
 
   bindFormSubmission = (handler) => {
-    const form = this._getElement('#contact-form'); 
+    // const form = this._getElement('#contact-form');
+    const form = document.querySelector('#contact-form'); 
+
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      console.log(event); 
+      const data = this._getFormData(form);
+      handler(data);
+    });
 
     form.addEventListener('keypress', (event) => {
       if (event.key === 'Enter') {
         event.preventDefault();
       }
-    });
-
-    form.addEventListener('submit', event => {
-      event.preventDefault();
-      const data = this._getFormData(form);
-      handler(data)
     });
   }
 
@@ -106,6 +111,7 @@ class FormView extends BaseView {
           data.tags.push(element.value); 
         }
       }
+      console.log(data); 
       return data; 
     }, dataStructure);
   }

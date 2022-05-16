@@ -10,11 +10,7 @@ export const state = {
   search: {
     query: '', 
     contacts: [],
-    contactsCount: 34
-  },
-  pagination: {
-    contactsPerPage: 10, 
-    page: 1
+    contactsCount: 0
   }
 };
 
@@ -124,6 +120,7 @@ export const deleteContact = async id => {
     } 
 
     state.contact = null; 
+    console.log(`Successfully deleted user with id ${id}`);
   } catch (err) {
     throw err;
   }

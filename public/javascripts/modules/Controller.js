@@ -22,64 +22,27 @@ export default class Controller {
     this.loadInitialData(); 
   }
 
-  handleDeleteContact = async (id) => {
-    try {
-      await this.model.getContact(id); 
-      const contact = this.model.state.contact; 
-
-      // load confirm modal 
-      const context = { name: contact.name };
-      this.view.modalWindow.load(CONFIRM_DELETE, context); 
-
-      this.view.contact.bindConfirmDeletion(async (isConfirmed) => {
-        if (isConfirmed) {
-          // load contact
-          await this.model.getContact(id); 
-          const contact = this.model.state.contact; 
-
-          // delete contact 
-          await this.model.deleteContact(id); 
-  
-          // get current query 
-          const query = this.view.search.getQuery(contact.name); 
-
-          // load main view contacts 
-          await this.model.getContacts()
-          const newContacts = this.model.state.search.contacts; 
-
-          // re-render contacts 
-          this.view.main.render(query, newContacts)
-        } 
-
-        this.view.modalWindow.close(); 
-      }); 
-      
-    } catch (err) {
-      console.error(err);       
-      // TODO: Add custom error message
-      // this.view.contact.renderError('deleteContactError'); 
-    }
-  }
 
   handleAddContact = async () => {
     try {
       console.log('handleAddContact()');
 
-      // load tags 
+      // // load tags 
       await this.model.getAllTags(); 
       const tags = this.model.state.tags; 
       
-      // load load add modal
+      // // load load add modal
       const context = { tags }
       this.view.modalWindow.load(ADD_CONTACT, context);
 
       
-      // TODO: this is not binding for some reason.
+      this.view.form.bindErrors(); 
+
+      // // TODO: this is not binding for some reason.
       this.view.form.bindCheckboxChanged();
 
-      this.view.form.bindErrors(); 
       this.view.form.bindFormSubmission((contact) => {
-        
+        console.log('handleAddContact data:', contact);
       })
 
     } catch (err) {
@@ -89,25 +52,7 @@ export default class Controller {
   }
 
 
-  handleQuerySearch = async (query) => {
-    try {
-      // load contacts
-      await this.model.getContacts(query);
-      const foundContacts = this.model.state.search.contacts;
-      
-      // load and render tags
-      await this.model.getAllTags(); 
-      this.view.pageTags.render(model.state.tags);
-      
-      // render main view 
-      this.view.main.render(query, foundContacts); 
-      
-    } catch (err) {
-      // log and render error 
-      console.error(err);
-      this.view.main.renderError(); 
-    }
-  }
+
 
 
   handleEditContact = async (id) => {
@@ -196,6 +141,75 @@ export default class Controller {
       console.error(err)
     }
   }
+
+
+
+
+
+
+
+  // Working Methods
+  handleDeleteContact = async (id) => {
+    try {
+      await this.model.getContact(id); 
+      const contact = this.model.state.contact; 
+
+      // load confirm modal 
+      const context = { name: contact.name };
+      this.view.modalWindow.load(CONFIRM_DELETE, context); 
+
+      this.view.contact.bindConfirmDeletion(async (isConfirmed) => {
+        if (isConfirmed) {
+          // load contact
+          await this.model.getContact(id); 
+          const contact = this.model.state.contact; 
+
+          // delete contact 
+          await this.model.deleteContact(id); 
+  
+          // get current query 
+          const query = this.view.search.getQuery(contact.name); 
+
+          // load main view contacts 
+          await this.model.getContacts()
+          const newContacts = this.model.state.search.contacts; 
+
+          // re-render contacts 
+          this.view.main.render(query, newContacts)
+        } 
+
+        this.view.modalWindow.close(); 
+      }); 
+      
+    } catch (err) {
+      console.error(err);       
+      // TODO: Add custom error message
+      // this.view.contact.renderError('deleteContactError'); 
+    }
+  }
+
+  handleQuerySearch = async (query) => {
+    try {
+      // load contacts
+      await this.model.getContacts(query);
+      const foundContacts = this.model.state.search.contacts;
+      
+      // load and render tags
+      await this.model.getAllTags(); 
+      this.view.pageTags.render(model.state.tags);
+      
+      // render main view 
+      this.view.main.render(query, foundContacts); 
+      
+    } catch (err) {
+      // log and render error 
+      console.error(err);
+      this.view.main.renderError(); 
+    }
+  }
+
+
+
 }
 
 
