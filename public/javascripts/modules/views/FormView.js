@@ -51,11 +51,12 @@ class FormView extends BaseView {
     // const form = this._getElement('#contact-form');
     const form = document.querySelector('#contact-form'); 
 
-    form.addEventListener('submit', event => {
+    form.addEventListener('click', event => {
       event.preventDefault();
-      console.log(event); 
-      const data = this._getFormData(form);
-      handler(data);
+      if (event.target.classList.contains('submit-button')) {
+        const data = this._getFormData(form);
+        handler(data);
+      }
     });
 
     form.addEventListener('keypress', (event) => {
@@ -65,8 +66,7 @@ class FormView extends BaseView {
     });
   }
 
-  // TODO: this doesn' work for some reason 
-  // I binded it in the `handleAddContact` method in the controller
+
   bindCheckboxChanged = () => {
     const form = this._getElement('#contact-form');
     form.addEventListener('click', (event) => {
@@ -94,23 +94,21 @@ class FormView extends BaseView {
     }); 
   }
 
-
   _getFormData = (form) => { 
     const elements = [...form.elements];
     let dataStructure = { tags: [] };
     
     return elements.reduce((data, element) => {
-      if (element.classList.contains('input')) {
+      if (element.classList.contains('contact-info')) {
         if (element.name === 'customTag') {
           data.tags.push(element.value)
         } else {
           data[element.name] = element.value; 
         }
-      } else if (element.classList.contains('checkbox')) {
-        if (element.checked) {
+      } else if (element.hasAttribute('checked')) {
           data.tags.push(element.value); 
-        }
       }
+
       console.log(data); 
       return data; 
     }, dataStructure);
