@@ -91,9 +91,10 @@ export default class Controller {
       // load load add modal
       const context = { tags }
       this.view.modalWindow.load(ADD_CONTACT, context);
+      
+      // TODO: this is not binding for some reason.
       this.view.form.bindCheckboxChanged();
-      
-      
+
       this.view.form.bindErrors(); 
       this.view.form.bindFormSubmission(async (contact) => {
         if (contact) {

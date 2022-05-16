@@ -63,14 +63,11 @@ class FormView extends BaseView {
     });
   }
 
-  // TODO: Can't make this work
+  // TODO: this doesn' work for some reason 
+  // I binded it in the `handleAddContact` method in the controller
   bindCheckboxChanged = () => {
     const form = this._getElement('#contact-form');
-    form.addEventListener('change', (event) => {
-      if (event.target.classList.contains('checkbox')) {
-
-      }
-    }); 
+    form.addEventListener('change', (event) => {}); 
   }
 
   _getFormData = (form) => { 
