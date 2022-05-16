@@ -22,6 +22,72 @@ export default class Controller {
     this.loadInitialData(); 
   }
 
+  handleDeleteContact = async (id) => {
+    try {
+      await this.model.getContact(id); 
+      const contact = this.model.state.contact; 
+
+      // load confirm modal 
+      const context = { name: contact.name };
+      this.view.modalWindow.load(CONFIRM_DELETE, context); 
+
+      this.view.contact.bindConfirmDeletion(async (isConfirmed) => {
+        if (isConfirmed) {
+          // load contact
+          await this.model.getContact(id); 
+          const contact = this.model.state.contact; 
+
+          // delete contact 
+          await this.model.deleteContact(id); 
+  
+          // get current query 
+          const query = this.view.search.getQuery(contact.name); 
+
+          // load main view contacts 
+          await this.model.getContacts()
+          const newContacts = this.model.state.search.contacts; 
+
+          // re-render contacts 
+          this.view.main.render(query, newContacts)
+        } 
+
+        this.view.modalWindow.close(); 
+      }); 
+      
+    } catch (err) {
+      console.error(err);       
+      // TODO: Add custom error message
+      // this.view.contact.renderError('deleteContactError'); 
+    }
+  }
+
+  handleAddContact = async () => {
+    try {
+      console.log('handleAddContact()');
+
+      // load tags 
+      await this.model.getAllTags(); 
+      const tags = this.model.state.tags; 
+      
+      // load load add modal
+      const context = { tags }
+      this.view.modalWindow.load(ADD_CONTACT, context);
+
+      
+      // TODO: this is not binding for some reason.
+      this.view.form.bindCheckboxChanged();
+
+      this.view.form.bindErrors(); 
+      this.view.form.bindFormSubmission((contact) => {
+        
+      })
+
+    } catch (err) {
+      console.error(err);
+      // TODO: something bad occurred
+    }
+  }
+
 
   handleQuerySearch = async (query) => {
     try {
@@ -43,89 +109,6 @@ export default class Controller {
     }
   }
 
-  
-  handleDeleteContact = async (id) => {
-    try {
-
-      // console.log(`Delete contact with id ${id}`); 
-      // PSEUDOCODE 
-      await this.model.getContact(id); 
-      const contact = this.model.state.contact; 
-
-      // load confirm modal 
-      const context = { name: contact.name };
-      this.view.modalWindow.load(CONFIRM_DELETE, context); 
-
-      this.view.contact.bindConfirmDeletion(async (isConfirmed) => {
-        if (isConfirmed) {
-          // delete contact 
-          await this.model.deleteContact(id); 
-  
-          // get current query 
-          const query = this.view.search.getQuery(); 
-
-          // load main view contacts 
-          await this.model.getContacts(query)
-          const newContacts = this.model.state.search.contacts; 
-
-          // re-render contacts 
-          this.view.main.render(query, newContacts)
-        } 
-
-        this.view.modalWindow.close(); 
-      }); 
-      
-    } catch (err) {
-      console.error(err);       
-      // TODO: Add custom error message
-      // this.view.contact.renderError('deleteContactError'); 
-    }
-  }
-
-  handleAddContact = async () => {
-    try {
-      // load tags 
-      await this.model.getAllTags(); 
-      const tags = this.model.state.tags; 
-      
-      // load load add modal
-      const context = { tags }
-      this.view.modalWindow.load(ADD_CONTACT, context);
-      
-      // TODO: this is not binding for some reason.
-      this.view.form.bindCheckboxChanged();
-
-      this.view.form.bindErrors(); 
-      this.view.form.bindFormSubmission(async (contact) => {
-        if (contact) {
-          // add contact to database 
-          await this.model.createContact(contact);
-
-          // fetch page tags 
-          await this.model.getAllTags(); 
-          const tags = this.model.state.tags; 
-
-          // render page tags 
-          this.view.pageTags.render(tags)
-
-          // fetch new contacts with contact.name 
-          const query = contact.name;
-          await this.model.getContacts(query);
-          const contacts = this.model.state.search.contacts; 
-
-          // render new contacts through main window 
-          this.view.main.render(query, contacts);
-        }
-
-        // close modal window 
-        this.view.modalWindow.close();
-      });
-
-    } catch (err) {
-      console.error(err);
-      // TODO: something bad occurred
-    }
-  }
 
   handleEditContact = async (id) => {
     try {
