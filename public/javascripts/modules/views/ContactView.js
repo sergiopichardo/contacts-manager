@@ -36,11 +36,10 @@ class ContactView extends BaseView {
 
 
   bindAddContact(handler){
-    // listen for a click event on any add button 
     this._app.addEventListener('click', event => {
       if (event.target.classList.contains('add-contact')) {
         event.preventDefault(); 
-        handler()
+        handler(); 
       }
     });    
   }
