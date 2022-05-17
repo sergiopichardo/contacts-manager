@@ -3,56 +3,84 @@
     "id": 3,
     "full_name": "Pete Hanson",
     "email": "ph@example.com",
-    "phone_number": "54321098761",
-    "tags": "friend,entrepreneur,Software,Entrepreneur,Product Owner,Launch School Teacher"
+    "phone_number": "1231231231",
+    "tags": ""
   },
   {
-    "full_name": "Sergio Pichardo",
-    "phone_number": "1231231234",
-    "email": "sergio@pichardo.com",
-    "tags": "Software,Hardware,Sales,Entrepreneur,Project Manager,Product Owner,Security Engineer",
-    "id": 7
-  },
-  {
-    "full_name": "Allan Musk",
+    "full_name": "Albert Musk 199",
     "phone_number": "1231231234",
     "email": "elonmusk@email.com",
-    "tags": "Software,Hardware,Sales,Entrepreneur,Project Manager,Product Owner,Security Application Engineer",
-    "id": 10
-  },
-  {
-    "full_name": "Albert Musk 1",
-    "phone_number": "1231231234",
-    "email": "elonmusk@email.com",
-    "tags": "Software,Hardware,Sales,Entrepreneur,Project Manager,Product Owner,Security Application Engineer",
+    "tags": "Hardware,Sales,Entrepreneur,Human Resources,CTO,UI Design,UX Design",
     "id": 11
   },
   {
-    "full_name": "Albert Musk 2",
-    "phone_number": "1231231234",
-    "email": "elonmusk@email.com",
-    "tags": "Software,Hardware,Sales,Entrepreneur,Project Manager,Product Owner,Security Application Engineer",
-    "id": 12
+    "full_name": "Sergio Pichardo",
+    "phone_number": "2423523342",
+    "email": "sdf@asdf.com",
+    "tags": "friend,Entrepreneur,Hardware",
+    "id": 17
   },
   {
-    "full_name": "Albert Musk 3",
-    "phone_number": "1231231234",
-    "email": "elonmusk@email.com",
-    "tags": "Software,Hardware,Sales,Entrepreneur,Project Manager,Product Owner,Security Application Engineer",
-    "id": 13
+    "full_name": "Sergio Pichardo",
+    "phone_number": "2423523342",
+    "email": "sdf@asdf.com",
+    "tags": "friend,Entrepreneur,Hardware",
+    "id": 19
   },
   {
-    "full_name": "Albert Musk 4",
-    "phone_number": "1231231234",
-    "email": "elonmusk@email.com",
-    "tags": "Software,Hardware,Sales,Entrepreneur,Project Manager,Product Owner,Security Application Engineer",
-    "id": 14
+    "full_name": "Sergio J Pichardo",
+    "phone_number": "2423523342",
+    "email": "sdf@asdf.com",
+    "tags": "",
+    "id": 20
   },
   {
-    "full_name": "Albert Musk 5",
-    "phone_number": "1231231234",
-    "email": "elonmusk@email.com",
-    "tags": "Software,Hardware,Sales,Entrepreneur,Project Manager,Product Owner,Security Application Engineer",
-    "id": 15
+    "full_name": "Sergio Pichardo",
+    "phone_number": "2423523342",
+    "email": "sdf@asdf.com",
+    "tags": "friend,Entrepreneur,Hardware",
+    "id": 21
+  },
+  {
+    "full_name": "Sergio Pichardo",
+    "phone_number": "2423523342",
+    "email": "sdf@asdf.com",
+    "tags": "friend,Entrepreneur,Hardware",
+    "id": 22
+  },
+  {
+    "full_name": "Arnold Arnolds",
+    "phone_number": "2342342342",
+    "email": "arnold@arnolds.com",
+    "tags": "friend,Entrepreneur",
+    "id": 23
+  },
+  {
+    "full_name": "Damian Knapp",
+    "phone_number": "2987923983",
+    "email": "daminknapp@gmail.com",
+    "tags": "Hardware,Entrepreneur,Human Resources",
+    "id": 24
+  },
+  {
+    "full_name": "Bruce Dennis",
+    "phone_number": "7989798323",
+    "email": "brucedennis@mail.com",
+    "tags": "Sales,Entrepreneur,Software Engineer",
+    "id": 25
+  },
+  {
+    "full_name": "Emmet Lester",
+    "phone_number": "3209834003",
+    "email": "emmet@email.com",
+    "tags": "Hardware,Entrepreneur,Software Engineer,CTO",
+    "id": 26
+  },
+  {
+    "full_name": "Layne Ward",
+    "phone_number": "3920938402",
+    "email": "Layne@wardfamily.com",
+    "tags": "friend,Entrepreneur,Human Resources,Software Engineer,CTO,UI Design,UX Design,Hardware,Sales",
+    "id": 27
   }
 ]

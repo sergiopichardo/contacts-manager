@@ -34,6 +34,8 @@ const _formatPhone = (phone) => {
 const _formatSendOffContact = contact => {
   if (!contact) return; 
 
+  console.log('current contact:');
+  console.log(JSON.stringify(contact));
   return {
     full_name: contact.name,
     email: contact.email,
@@ -122,6 +124,15 @@ export const deleteContact = async id => {
 
 export const updateContact = async contact => {
   try {
+    const id = contact.id;
+    await getContact(id); 
+    
+    let newTags = [ ...state.contact.tags, ...contact.tags ];
+    newTags = [...new Set(newTags)];
+    
+    contact.tags = newTags; 
+    console.log('updateContact', contact);
+
     const sendOffContact = _formatSendOffContact(contact);
     let updatedContact = await http.put(sendOffContact);
 

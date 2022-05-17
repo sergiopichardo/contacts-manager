@@ -162,13 +162,7 @@
   <script id="main-view" type="text/x-handlebars-template">
      
     <main id="main" class="mt-6">
-      <div class="container">
-        <!-- No Contacts View -->
-
-        <!-- No Contacts Starting with `query` -->
-
-        <!-- Contacts List View  -->
-        
+      <div class="container"></div>
     </main>
   </script>
 
@@ -325,7 +319,7 @@
               <label class="label">Name</label>
               <div class="control has-icons-left has-icons-right">
                 <input 
-                  class="input contact-info" 
+                  class="input contact-info name-input" 
                   type="text" 
                   name="name" 
                   placeholder="e.g. John Doe" 
@@ -421,7 +415,7 @@
               <label class="label">Custom Tag</label>
               <div class="control has-icons-left has-icons-right">
                 <input 
-                  class="input contact-info" 
+                  class="input contact-info custom-tag" 
                   type="text" 
                   placeholder="Text input" 
                   name="customTag" 
@@ -441,11 +435,10 @@
               <button class="button is-light no-button">
                 Cancel
               </button>
-              <button type="input" class="button is-primary submit-button">
+              <button type="input" class="button is-primary submit-button" disabled>
                 Submit
               </button>    
-            </div>
-    
+            </div>   
           </form>
         </section>
       </div>

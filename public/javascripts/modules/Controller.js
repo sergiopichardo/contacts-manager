@@ -22,38 +22,39 @@ export default class Controller {
     this.loadInitialData(); 
   }
 
-
   handleAddContact = async () => {
     try {
-      console.log('handleAddContact()');
-
-      // // load tags 
+      // load tags 
       await this.model.getAllTags(); 
       const tags = this.model.state.tags; 
       
-      // // load load add modal
+      // load load add modal
       const context = { tags }
       this.view.modalWindow.load(ADD_CONTACT, context);
 
-      
+      // bind listners
       this.view.form.bindErrors(); 
-
-      // // TODO: this is not binding for some reason.
       this.view.form.bindCheckboxChanged();
+      this.view.form.bindFormSubmission(async (contact) => {
+        // create element 
+        await this.model.createContact(contact)
+        
+        // store newly created contact and get name 
+        const newContact = this.model.state.contact; 
+        const query = newContact.name; 
 
-      this.view.form.bindFormSubmission((contact) => {
-        console.log('handleAddContact data:', contact);
-      })
+        // fetch all contacts with that contact 
+        await this.model.getContacts(query); 
+        const contacts = this.model.state.contacts; 
 
+        // render page view 
+        this.view.main.render(query, contacts); 
+        this.view.modalWindow.close(); 
+      });
     } catch (err) {
-      console.error(err);
-      // TODO: something bad occurred
+      console.error("An error occurred while adding your contact.");
     }
   }
-
-
-
-
 
   handleEditContact = async (id) => {
     try {
@@ -61,94 +62,41 @@ export default class Controller {
       await this.model.getAllTags(); 
       const tags = this.model.state.tags; 
 
-      // fetch contact by id 
-      await this.model.getContact(id); 
+      // get contact 
+      await this.model.getContact(id)
       const contact = this.model.state.contact; 
-
+      
       // load load add modal
-      const context = { ...contact, tags };
+      const context = { ...contact, tags }
       this.view.modalWindow.load(EDIT_CONTACT, context);
 
-      // bind form errors b/c we need the modal to be loaded first
-      // bind form submission b/c we need a contact to submit
+      // bind listners
       this.view.form.bindErrors(); 
+      this.view.form.bindCheckboxChanged();
       this.view.form.bindFormSubmission(async (contact) => {
-        if (contact) {
-          contact.id = id; 
-          console.log('CONTACT:', contact)
-          // add contact to database 
-          await this.model.updateContact(contact);
+        // create element 
+        contact.id = id; 
+        console.log('bindFormSubmission()', contact);
+        await this.model.updateContact(contact)
+        
+        // store newly created contact and get name 
+        const updatedContact = this.model.state.contact; 
+        const query = updatedContact.name; 
 
-          // fetch page tags 
-          await this.model.getAllTags(); 
-          const tags = this.model.state.tags; 
+        // fetch all contacts with that contact 
+        await this.model.getContacts(query); 
+        const contacts = this.model.state.contacts; 
 
-          // render page tags 
-          this.view.pageTags.render(tags)
-
-          // fetch new contacts with contact.name 
-          const query = contact.name;
-          await this.model.getContacts(query);
-          const contacts = this.model.state.search.contacts; 
-
-          // render new contacts through main window 
-          this.view.main.render(query, contacts);
-        }
-
-        // close modal window 
-        this.view.modalWindow.close();
+        // render page view 
+        this.view.main.render(query, contacts); 
+        this.view.modalWindow.close(); 
       });
+
     } catch (err) {
-      console.error(err);
-      // TODO: Render error 
+      console.error("An error occurred while updating your contact.");
     }
   }
 
-  handleShowContactsByTagName = async (tagName) => {
-    try {
-      await this.model.getAllTags(); 
-      const tags = this.model.state.tags; 
-
-      // render page tags 
-      this.view.pageTags.render(tags)
-
-      // fetch contact 
-      await this.model.getContactsByTagName(tagName); 
-      const contacts = this.model.state.search.contacts; 
-
-      this.view.main.render(tagName, contacts);
-      
-    } catch (err) {
-      console.error(err);
-      // TODO: render contact
-    }
-  }
-
-
-  handleShowContactDetails = async () => {}
-
-
-
-
-  loadInitialData = async () => {
-    try {
-      // render teags
-      await this.model.getAllTags(); 
-      const tags = this.model.state.tags; 
-      this.view.pageTags.render(tags)
-
-    } catch (err) {
-      console.error(err)
-    }
-  }
-
-
-
-
-
-
-
-  // Working Methods
   handleDeleteContact = async (id) => {
     try {
       await this.model.getContact(id); 
@@ -168,11 +116,11 @@ export default class Controller {
           await this.model.deleteContact(id); 
   
           // get current query 
-          const query = this.view.search.getQuery(contact.name); 
+          const query = contact.name;
 
           // load main view contacts 
-          await this.model.getContacts()
-          const newContacts = this.model.state.search.contacts; 
+          await this.model.getContacts(query)
+          const newContacts = this.model.state.contacts; 
 
           // re-render contacts 
           this.view.main.render(query, newContacts)
@@ -182,9 +130,26 @@ export default class Controller {
       }); 
       
     } catch (err) {
-      console.error(err);       
-      // TODO: Add custom error message
-      // this.view.contact.renderError('deleteContactError'); 
+      console.error("An error occurred while deleting your contact.");       
+    }
+  }
+
+  handleShowContactsByTagName = async (tagName) => {
+    try {
+      await this.model.getAllTags(); 
+      const tags = this.model.state.tags; 
+
+      // render page tags 
+      this.view.pageTags.render(tags)
+
+      // fetch contact 
+      await this.model.getContactsByTagName(tagName); 
+      const contacts = this.model.state.contacts; 
+
+      this.view.main.render(tagName, contacts);
+      
+    } catch (err) {
+      console.error("An error occurred while showing contacts by tag name.");
     }
   }
 
@@ -192,7 +157,7 @@ export default class Controller {
     try {
       // load contacts
       await this.model.getContacts(query);
-      const foundContacts = this.model.state.search.contacts;
+      const foundContacts = this.model.state.contacts;
       
       // load and render tags
       await this.model.getAllTags(); 
@@ -203,13 +168,22 @@ export default class Controller {
       
     } catch (err) {
       // log and render error 
-      console.error(err);
+      console.error("An error occurred while searching for a contact.");
       this.view.main.renderError(); 
     }
   }
 
+  loadInitialData = async () => {
+    try {
+      // render teags
+      await this.model.getAllTags(); 
+      const tags = this.model.state.tags; 
+      this.view.pageTags.render(tags)
 
-
+    } catch (err) {
+      console.error("An error occurred while adding the initial page data.");
+    }
+  }
 }
 
 

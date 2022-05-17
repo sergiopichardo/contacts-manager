@@ -119,21 +119,19 @@ class FormView extends BaseView {
 
   _getFormData = (form) => { 
     const elements = [...form.elements];
-    let dataStructure = { tags: [] };
-    
-    return elements.reduce((data, element) => {
-      if (element.classList.contains('contact-info')) {
-        if (element.name === 'customTag' && element.value.length !== 0) {
-          data.tags.push(element.value)
-        } else {
-          data[element.name] = element.value; 
-        }
-      } else if (element.hasAttribute('checked')) {
-          data.tags.push(element.value); 
-      }
 
-      return data; 
-    }, dataStructure);
+    const checkboxes = elements.filter(element => {
+      return element.className === 'checkbox' || (element.name === 'customTag' && element.value.length > 0);
+    }).map(checkbox => checkbox.value);
+
+    const inputs = elements.reduce((result, element) => {
+      if (element.classList.contains('contact-info') && element.name !== 'customTag') {
+        result[element.name] = element.value; 
+      }
+      return result; 
+    }, {})
+    
+    return { ...inputs, tags: checkboxes };
   }
 
 }
