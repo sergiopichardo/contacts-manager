@@ -33,10 +33,13 @@ class FormView extends BaseView {
     
     let elements = this._getAllInputElements();
     let customTag = this._getElement('.custom-tag');
+    let nameInput = this._getElement('.name-input'); 
     
     if (!customTag.value) {
       customTag.classList.add('is-primary'); 
     }
+
+    nameInput.focus(); 
 
     elements.forEach((element, index) => {
       element.addEventListener('input', (event) => {
@@ -108,7 +111,7 @@ class FormView extends BaseView {
     
     return elements.reduce((data, element) => {
       if (element.classList.contains('contact-info')) {
-        if (element.name === 'customTag') {
+        if (element.name === 'customTag' && element.value.length !== 0) {
           data.tags.push(element.value)
         } else {
           data[element.name] = element.value; 
