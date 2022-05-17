@@ -1,6 +1,6 @@
 # Contacts Manager App 
 
-This contacts manager application implements basic CRUD (Cread, Read, Update, and Delete) functionalities. A contact is an *entity* with a `name`, `email`, `phone`, and `tags`. 
+This contacts manager application implements basic CRUD (Cread, Read, Update, and Delete) functionalities. A contact is an *entity* with a `name`, `email`, `phone`, and `tags`. The application allows you to *list* contacts based on their tag name, *add* new contacts, *delete* a contact, *update* a contact and *search* a contact based on a substring in the contact's `name` property. 
 
 
 ![Contacts Manager Diagram](./contacts-manager-diagram.png)
