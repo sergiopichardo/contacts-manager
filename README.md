@@ -8,7 +8,7 @@ This contacts manager application implements basic CRUD (Cread, Read, Update, an
 ## Application Architecture Reasoning
 I wanted to build this application in such a way that would allow me to reuse components, and make the maintainability of this app effortless. 
 
-I did some quick research and learn that most web applications have the the following components: 
+I did a quick research and learn that most web applications have the the following components: 
 - Domain Logic
 - Application Logic
 - Presentation Layer
