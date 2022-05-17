@@ -30,16 +30,28 @@ class FormView extends BaseView {
 
   bindErrors() {
     const submitButton = this._getElement('.submit-button'); 
-    
     let elements = this._getAllInputElements();
-    let customTag = this._getElement('.custom-tag');
-    let nameInput = this._getElement('.name-input'); 
-    
-    if (!customTag.value) {
-      customTag.classList.add('is-primary'); 
-    }
 
-    nameInput.focus(); 
+    let validityBalance = 3; 
+    elements.forEach(element => {
+      const isEmpty = element.value.length === 0; 
+      if (element.classList.contains('custom-tag')) {
+        element.classList.add('is-primary');
+      } else {
+        if (element.classList.contains('name-input')) {
+          element.focus();
+        } 
+        
+        if (!isEmpty) {
+          element.classList.add('is-primary'); 
+          validityBalance -= 1; 
+        }
+      }
+    }); 
+
+    if (validityBalance === 0) {
+      submitButton.removeAttribute('disabled'); 
+    }
 
     elements.forEach((element, index) => {
       element.addEventListener('input', (event) => {
