@@ -38,7 +38,7 @@ State Management helps in updating the UI in related places when there is a chan
 
 #### HTTP Library
 Some options include, the good ol' [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) object, The [fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API), and [axios](https://axios-http.com/docs/intro). 
-> Allows you to make make and receive HTTP requests
+> Allows you to make and receive HTTP requests
 
 ---
 
