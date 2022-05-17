@@ -6,7 +6,6 @@ export const state = {
   contact: {},
   tags: [],
   contacts: [],
-  contactsCount: 0,
 };
 
 // Helpers 
