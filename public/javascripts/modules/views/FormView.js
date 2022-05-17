@@ -23,11 +23,15 @@ class FormView extends BaseView {
     }
   }
 
-  bindErrors() {
+  _getAllInputElements() {
     const selector = 'input.contact-info'; 
+    return [...this._getAllElements(selector)];
+  }
+
+  bindErrors() {
     const submitButton = this._getElement('.submit-button'); 
     
-    let elements = [...this._getAllElements(selector)];
+    let elements = this._getAllInputElements();
     let customTag = this._getElement('.custom-tag');
     
     if (!customTag.value) {
@@ -38,7 +42,7 @@ class FormView extends BaseView {
       element.addEventListener('input', (event) => {
         this._bindInputChanged(event, inputValidators[index]);
         
-        elements = [...this._getAllElements(selector)]
+        elements = this._getAllInputElements();
         const allIsValid = elements.every(element => {
           return element.classList.contains('is-primary'); 
         });
@@ -53,8 +57,7 @@ class FormView extends BaseView {
   }
 
   bindFormSubmission = (handler) => {
-    // const form = this._getElement('#contact-form');
-    const form = document.querySelector('#contact-form'); 
+    const form = this._getElement('#contact-form');
 
     form.addEventListener('click', event => {
       event.preventDefault();
