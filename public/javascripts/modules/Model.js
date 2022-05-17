@@ -1,6 +1,6 @@
 "use strict";
 
-import http from './model/Http.js';
+import http from './helpers/Http.js';
 
 export const state = {
   contact: {},
