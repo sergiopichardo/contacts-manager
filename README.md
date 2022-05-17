@@ -50,6 +50,27 @@ After falling down the rabbit hole of application architectures, I found 2 main 
 
 I did play around with the Flux pattern a bit using Redux, but it quickly got out of control. So, I thought MVC was the way to go. It is a lot simpler than the Flux pattern and makes separation of concerns much easier. I highly recommend this [MVC article](https://www.taniarascia.com/javascript-mvc-todo-app) by Tania Rascia. 
 
+The Different Architectural concerns are divided as follows in the MVC pattern. 
+
+##### View 
+> The layer the user interacts with
+- UI Components 
+  - Error messages
+  - Success Messages
+- Binding Events
+
+##### Controller 
+> An intermediary between the Model and the View
+- Application Logic 
+
+##### Model 
+> The layer that interacts with HTTP and dabase
+- Domain Logic 
+- HTTP Library
+- State Management 
+
+
+
 
 ---
 
