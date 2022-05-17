@@ -132,7 +132,7 @@ I did play around with the Flux pattern a bit using Redux, but it quickly got ou
 2. Write feature description 
 3. Implement HTTP wrapper `/javascripts/modules/helpers/Http.js`
 4. Implement Model `/javascripts/modules/Model.js`
-   > Here I tried to decouple the `state` and tried to mimick the way an application is structured in the wild
+   > Here I tried to decouple the `state` and tried to mimic the way an application is structured in the wild.
 5. Implement all views and instantiate them in `/javascripts/modules/View.js`
 6. Export and Initialize Controller in `main.js`
 ---
