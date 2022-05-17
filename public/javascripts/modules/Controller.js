@@ -76,7 +76,6 @@ export default class Controller {
       this.view.form.bindFormSubmission(async (contact) => {
         // create element 
         contact.id = id; 
-        console.log('bindFormSubmission()', contact);
         await this.model.updateContact(contact)
         
         // store newly created contact and get name 
@@ -185,14 +184,3 @@ export default class Controller {
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-

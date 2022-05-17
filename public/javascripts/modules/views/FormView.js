@@ -114,14 +114,14 @@ class FormView extends BaseView {
         span.removeChild(checkbox);
         span.insertAdjacentElement("afterbegin", newCheckbox);
       }
-    }); 
+    });
   }
 
   _getFormData = (form) => { 
     const elements = [...form.elements];
 
     const checkboxes = elements.filter(element => {
-      return element.className === 'checkbox' || (element.name === 'customTag' && element.value.length > 0);
+      return (element.className === 'checkbox' && element.hasAttribute('checked')) || (element.name === 'customTag' && element.value.length > 0);
     }).map(checkbox => checkbox.value);
 
     const inputs = elements.reduce((result, element) => {
