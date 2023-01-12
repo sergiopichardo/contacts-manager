@@ -14,13 +14,6 @@
     "id": 19
   },
   {
-    "full_name": "Sergio J Pichardo",
-    "phone_number": "2423523342",
-    "email": "sdf@asdf.com",
-    "tags": "Human Resources,UX Design,Perpetual student,Hardware,Sales,UI Design,Software Engineer,Entrepreneur,friend",
-    "id": 20
-  },
-  {
     "full_name": "Sergio Pichardo",
     "phone_number": "2423523342",
     "email": "sdf@asdf.com",
@@ -49,13 +42,6 @@
     "id": 24
   },
   {
-    "full_name": "Bruce Dennis",
-    "phone_number": "7989798323",
-    "email": "brucedennis@mail.com",
-    "tags": "Sales,Entrepreneur,Software Engineer",
-    "id": 25
-  },
-  {
     "full_name": "Emmet Lester",
     "phone_number": "3209834003",
     "email": "emmet@email.com",
@@ -68,5 +54,12 @@
     "email": "Layne@wardfamily.com",
     "tags": "friend,Entrepreneur,Human Resources,Software Engineer,CTO,UI Design,UX Design,Hardware,Sales",
     "id": 27
+  },
+  {
+    "full_name": "Sergio J. Pichardo",
+    "phone_number": "1234567890",
+    "email": "hello@sergiojpichardo.com",
+    "tags": "",
+    "id": 28
   }
 ]
